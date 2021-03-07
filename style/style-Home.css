@@ -1,0 +1,329 @@
+body {
+  overflow-x: hidden;
+}
+
+.intro {
+  margin: 150px 75px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+@media only screen and (max-width: 755px) {
+  .intro {
+    margin: 100px 35px;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+  }
+}
+
+.intro p {
+  font-size: 42px;
+  color: #fff;
+  font-weight: 300;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+@media only screen and (max-width: 1160px) {
+  .intro p {
+    font-size: 35px;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .intro p {
+    font-size: 30px;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+  }
+}
+
+@media only screen and (max-width: 880px) {
+  .intro p {
+    font-size: 25px;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+  }
+}
+
+@media only screen and (max-width: 755px) {
+  .intro p {
+    font-size: 20px;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+  }
+}
+
+@media only screen and (max-width: 540px) {
+  .intro p {
+    font-size: 13px;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+  }
+}
+
+.intro p span {
+  color: #16E6E8;
+}
+
+.intro .registerIntro {
+  margin-top: 80px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  font-size: 11px;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+@media only screen and (max-width: 1140px) {
+  .intro .registerIntro {
+    right: 4%;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+  }
+}
+
+@media only screen and (max-width: 980px) {
+  .intro .registerIntro {
+    right: 2%;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+  }
+}
+
+@media only screen and (max-width: 540px) {
+  .intro .registerIntro {
+    margin-top: 30px;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+  }
+}
+
+.intro .registerIntro .login {
+  padding: 12px 42px;
+  background-color: #0AB4B4;
+  margin: 25px;
+  border-radius: 3px;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+
+@media only screen and (max-width: 540px) {
+  .intro .registerIntro .login {
+    padding: 8px 22px;
+    margin: 10px;
+    -webkit-transition: 1s;
+    transition: 1s;
+  }
+}
+
+.intro .registerIntro .login:hover {
+  background-color: #007B7E;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.bigOntro {
+  margin-top: 670px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+@media only screen and (max-width: 1140px) {
+  .bigOntro {
+    margin-top: 470px;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+  }
+}
+
+@media only screen and (max-width: 880px) {
+  .bigOntro {
+    margin-top: 370px;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+  }
+}
+
+@media only screen and (max-width: 540px) {
+  .bigOntro {
+    margin-top: 270px;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+  }
+}
+
+.bigOntro .intro2 {
+  margin: 0 auto;
+  width: 700px;
+  text-align: center;
+  color: #000;
+  position: relative;
+}
+
+@media only screen and (max-width: 880px) {
+  .bigOntro .intro2 {
+    width: auto;
+  }
+}
+
+.bigOntro .intro2 .titleIntro {
+  text-align: center;
+  line-height: 1;
+}
+
+.bigOntro .intro2 .titleIntro p {
+  margin-left: 70px;
+}
+
+.bigOntro .intro2 .titleIntro h1 {
+  font-weight: 500;
+}
+
+.bigOntro .intro2 p {
+  font-size: 17px;
+}
+
+.BoxIntro {
+  position: relative;
+  width: 870px;
+  margin: 80px auto;
+  left: 10px;
+}
+
+.BoxIntro .intro3 {
+  position: relative;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+}
+
+@media only screen and (max-width: 880px) {
+  .BoxIntro .intro3 {
+    -ms-grid-columns: (1fr)[1];
+        grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.BoxIntro .intro3 .titleIntro3 {
+  width: 270px;
+  height: 270px;
+  background-color: white;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+@media only screen and (max-width: 880px) {
+  .BoxIntro .intro3 .titleIntro3 {
+    width: 100vw;
+  }
+}
+
+.BoxIntro .intro3 .titleIntro3 .inBox {
+  text-align: center;
+  padding: 0px;
+  margin-top: 50px;
+  width: auto;
+}
+
+.BoxIntro .intro3 .titleIntro3 .inBox img {
+  margin-bottom: 10px;
+  height: 90px;
+}
+
+.BoxIntro .intro3 .titleIntro3 .inBox p {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 25px;
+}
+
+.Contact {
+  position: relative;
+}
+
+.Contact .BackContact {
+  position: absolute;
+  width: auto;
+  background-position: center;
+  background-size: cover;
+  top: -430px;
+  z-index: -1;
+}
+
+@media only screen and (max-width: 880px) {
+  .Contact .BackContact {
+    top: -500px;
+  }
+}
+
+.Contact .InContact {
+  text-align: center;
+  margin-top: 170px;
+}
+
+.Contact .InContact p {
+  font-size: 15px;
+  line-height: 40px;
+  color: #FFF;
+}
+
+.Contact .InContact p span {
+  font-size: 35px;
+}
+
+.Contact .InContact form .input {
+  width: 415px;
+  border: 1px solid #fff;
+  background-color: transparent;
+  border-radius: 0;
+  margin-bottom: 16px;
+  color: #fff;
+  padding: 13px;
+}
+
+.Contact .InContact form ::-webkit-input-placeholder {
+  color: #E5E5E5;
+  font-size: 12px;
+}
+
+.Contact .InContact form :-ms-input-placeholder {
+  color: #E5E5E5;
+  font-size: 12px;
+}
+
+.Contact .InContact form ::-ms-input-placeholder {
+  color: #E5E5E5;
+  font-size: 12px;
+}
+
+.Contact .InContact form ::placeholder {
+  color: #E5E5E5;
+  font-size: 12px;
+}
+
+.Contact .InContact form .send {
+  width: 440px;
+  height: 35px;
+  border: 1px solid #fff;
+  background-color: #ffffff;
+  border-radius: 0;
+  margin-top: 50px;
+  font-size: 13px;
+  color: #0F6C6E;
+}
+
+.map {
+  margin: 20px;
+  position: relative;
+  top: 250px;
+}
+/*# sourceMappingURL=style-Home.css.map */

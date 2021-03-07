@@ -1,0 +1,180 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: poppins;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
+header {
+  width: 100vw;
+  width: 100vw;
+}
+
+header nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+header nav a {
+  position: relative;
+  top: 0px;
+  left: 30%;
+  font-size: 17px;
+  color: #fff;
+  text-decoration: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: 35px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+header nav a:hover {
+  border-bottom: 1px solid #fff;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+@media only screen and (max-width: 1140px) {
+  header nav a {
+    left: 30%;
+    margin-left: 15px;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+  }
+}
+
+@media only screen and (max-width: 980px) {
+  header nav a {
+    left: 20%;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+  }
+}
+
+.logo {
+  position: relative;
+  top: 32px;
+  left: 7%;
+  font-size: 28px;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+@media only screen and (max-width: 1140px) {
+  .logo {
+    left: 4%;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+  }
+}
+
+@media only screen and (max-width: 980px) {
+  .logo {
+    left: 2%;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+  }
+}
+
+@media only screen and (max-width: 820px) {
+  .logo {
+    top: 30px;
+    left: 2%;
+    font-size: 24px;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    z-index: 99;
+  }
+}
+
+.register {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: absolute;
+  top: 35px;
+  right: 10%;
+  font-size: 11px;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+@media only screen and (max-width: 1140px) {
+  .register {
+    right: 4%;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+  }
+}
+
+@media only screen and (max-width: 980px) {
+  .register {
+    right: 2%;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+  }
+}
+
+.register .login {
+  padding: 12px 35px;
+  background-color: #0AB4B4;
+  color: #fff;
+  border-radius: 3px;
+  font-size: 13px;
+  cursor: pointer;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.register .login:hover {
+  background-color: #007B7E;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.register .singin {
+  padding: 12px 18px;
+  background-color: #609591;
+  color: #fff;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.register .singin:hover {
+  background-color: #507673;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.active {
+  border-bottom: 1px solid #fff;
+}
+
+.divBtnTop {
+  position: fixed;
+  right: 10px;
+  bottom: 50px;
+  z-index: 9999;
+}
+/*# sourceMappingURL=style-navbar.css.map */
