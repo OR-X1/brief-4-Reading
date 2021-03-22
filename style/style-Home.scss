@@ -3,6 +3,20 @@ $size17: 17px;
 $size28: 28px;
 $size42: 42px;
 $colorBlack: #000;
+
+
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-thumb{
+    background: #0F6C6E;
+}
+::-webkit-scrollbar-thumb:hover{
+    background: #007B7E;
+}
+
+
 body{
     overflow-x: hidden;
 }

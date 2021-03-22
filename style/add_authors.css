@@ -1,3 +1,15 @@
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #0F6C6E;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #007B7E;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -309,7 +321,7 @@ table {
   background-color: none;
   border: 1px solid #006D6F;
   border-collapse: collapse;
-  margin-left: 30px;
+  margin-left: 10vw;
   margin-top: 173px;
 }
 

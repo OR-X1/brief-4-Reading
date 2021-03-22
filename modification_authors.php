@@ -1,3 +1,19 @@
+<?php
+require_once('connect.php');
+
+$idA = $_GET['idA'];
+
+$sqlAfficher = "SELECT * FROM authors WHERE idA=$idA ";
+
+$queryAffiche = $pdo->query($sqlAfficher);
+
+$rowAffiche = $queryAffiche->fetch();
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,6 +32,7 @@
   integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
   crossorigin="anonymous"></script>
 
+  
   <style>
     @media only screen and (max-width: 820px) {
         
@@ -42,7 +59,6 @@
           display: none;
           padding: 10px;
           color: #006D6F;
-                        /* border-top: 1px solid #666565; */
           left: 50px;
           transition: 0.5s;
         
@@ -114,7 +130,7 @@
                     
                 }
                 .menu-toggle:before{
-                   
+                  
                     content: '\f0c9';
                     font-family: fontAwesome;
                     line-height: 40px;
@@ -137,19 +153,19 @@
 <body>
     <header>
         <div class="menu-toggle"></div>
-        <a href="index.html">
+        <a href="index.php">
             <div class="logo" >Reading.</div>
         </a>
         <nav class="navBar">
             
-            <a  href="index.html">Home</a>
-            <a href="our_books.html">Our Books</a>
-            <a href="add_authors.html"  class="active">Add Authors</a>
-            <a href="add_books.html" >Add Books</a>
+            <a  href="index.php">Home</a>
+            <a href="our_books.php">Our Books</a>
+            <a href="add_authors.php">Add Authors</a>
+            <a href="add_books.php">Add Books</a>
             
-            <div class="register" href="">
-                <a class="aSingIn"><div class="singin" >Sing in</div></a>
-                <a class="aSingIn"><div class="login" >Log in</div></a>
+            <div class="register">
+                <a href="login.php" class="aSingIn"><div class="singin" >Sing in</div></a>
+                <a href="login.php" class="aSingIn"><div class="login" >Log in</div></a>
             </div>
         </nav>
        
@@ -164,95 +180,29 @@
             })
         }); 
     </script>
-    <p class="titre">Add Authors</p>
-<div class="container">
+
+    <p class="titre">Modification of Authors</p>
+<form class="container" method="post" action="updateauthors.php"  enctype="multipart/form-data">
     <div class="DivFile">
         <p>&#10010; Add Image</p>
 
         <p class="editImg">&#9998; Edit Image</p>
-        <input class="ImgFile" type="file" accept=".png, .jpg, .jpeg" data-id='imgChange'>
-        <img id="imgChange" src="" alt="">
+        <input class="ImgFile" type="file" name="image" accept=".png, .jpg, .jpeg" data-id='imgChange'>
+        <img id="imgChange" src="images/<?php echo $rowAffiche['image'] ?>" alt="">
     </div>
 
 
    
     <div class="content">
-        <input type="text" placeholder="First Name" class="input">
-        <input type="text" placeholder="Last Name" class="input">
-        <input type="date" placeholder="Date of Birth" class="input"><br />
-        <select name="books" class="authors" >
-            <option value="" disabled selected hidden>Books</option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-        </select><br />
-        <button class="ADD">Add</button>
+            <input type="hidden" name="idA"  value="<?= $rowAffiche['idA'] ?>">
+
+        <input type="text" placeholder="First Name" name="Fname" class="input" value="<?php echo $rowAffiche['Fname'] ?>">
+        <input type="text" placeholder="Last Name" class="input" name="Lname" value="<?php echo $rowAffiche['Lname'] ?>">
+        <input type="date" placeholder="Date of Birth" class="input" name="date" value="<?php echo $rowAffiche['dateN'] ?>"><br />
+        
+        <button class="ADD">Edit</button>
     </div>
-</div>
-
-
-<table>
-    <tr>
-        <th>Id</th>
-        <th>Image</th>
-        <th>First Name</th>
-        <th>First Name</th>
-        <th>Date of Birth</th>
-        <th>Books</th>
-        <th></th>
-    </tr>
-    <tr>
-        <td>1</td>
-        <td><img src="images/auteur1.jpg" class="img_book" alt="AA" width="75px" height="72px"></td>
-        <td>First name 1</td>
-        <td>Last name 1</td>
-        <td>30/03/1996</td>
-        <td>Book 1</td>
-        <td><a href="modification_authors.html"><img src="images/Icon feather-edit.png" class="img" alt=""></a><img src="images/Icon material-delete.png" alt=""></td>
-    </tr>
-
-    <tr>
-        <td>1</td>
-        <td><img src="images/auteur1.jpg" class="img_book" alt="AA" width="75px" height="72px"></td>
-        <td>First name 1</td>
-        <td>Last name 1</td>
-        <td>30/03/1996</td>
-        <td>Book 1</td>
-        <td><img src="images/Icon feather-edit.png" class="img" alt=""><img src="images/Icon material-delete.png" alt=""></td>
-    </tr>
-
-    <tr>
-        <td>1</td>
-        <td><img src="images/auteur1.jpg" class="img_book" alt="AA" width="75px" height="72px"></td>
-        <td>First name 1</td>
-        <td>Last name 1</td>
-        <td>30/03/1996</td>
-        <td>Book 1</td>
-        <td><img src="images/Icon feather-edit.png" class="img" alt=""><img src="images/Icon material-delete.png" alt=""></td>
-    </tr>
-    <tr>
-        <td>1</td>
-        <td><img src="images/auteur1.jpg" class="img_book" alt="AA" width="75px" height="72px"></td>
-        <td>First name 1</td>
-        <td>Last name 1</td>
-        <td>30/03/1996</td>
-        <td>Book 1</td>
-        <td><img src="images/Icon feather-edit.png" class="img" alt=""><img src="images/Icon material-delete.png" alt=""></td>
-    </tr>
-    <tr>
-        <td>1</td>
-        <td><img src="images/auteur1.jpg" class="img_book" alt="AA" width="75px" height="72px"></td>
-        <td>First name 1</td>
-        <td>Last name 1</td>
-        <td>30/03/1996</td>
-        <td>Book 1</td>
-        <td><img src="images/Icon feather-edit.png" class="img" alt=""><img src="images/Icon material-delete.png" alt=""></td>
-    </tr>
-    
-   
-    
-</table>
-
+</form>
 
 
 <script>

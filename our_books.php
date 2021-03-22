@@ -1,3 +1,44 @@
+<?php
+
+require_once("connect.php");
+
+$requet="select *  from books ";
+
+$query1= $pdo->query($requet);
+
+$requet2="select * from authors";
+$query2=$pdo->query($requet2);
+
+
+
+$option = '';
+function listauthor($ib) {
+	global $option,$pdo;
+	$option = '';
+	$qr="SELECT a.idA , a.Fname,a.Lname FROM authors a , gallery g where g.idA=a.idA  and  g.idB=$ib ";
+    // echo $ib;
+
+    $que=$pdo->query($qr);
+
+	while($row2 = $que->fetch(PDO::FETCH_ASSOC))
+	{
+		
+	// $option .= '<option value = "'.$row2['idA'].'">'.$row2['Fname'].'</option>';
+	$option .= '<option value = "'.$row2["idA"].'">' .$row2['Fname']." ".$row2['Lname']. '</option>';
+
+	}
+}
+
+
+
+
+
+
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -149,19 +190,19 @@
 
         <header>
             <div class="menu-toggle"></div>
-            <a href="index.html">
+            <a href="index.php">
                 <div class="logo" >Reading.</div>
             </a>
             <nav class="navBar">
                 
-                <a  href="index.html">Home</a>
-                <a href="our_books.html"  class="active">Our Books</a>
-                <a href="add_authors.html">Add Authors</a>
-                <a href="add_books.html">Add Books</a>
+                <a  href="index.php">Home</a>
+                <a href="our_books.php"  class="active">Our Books</a>
+                <a href="add_authors.php">Add Authors</a>
+                <a href="add_books.php">Add Books</a>
                 
-                <div class="register" href="">
-                    <a class="aSingIn"><div class="singin" >Sing in</div></a>
-                    <a class="aSingIn"><div class="login" >Log in</div></a>
+                <div class="register">
+                    <a href="login.php" class="aSingIn"><div class="singin" >Sing in</div></a>
+                    <a href="login.php" class="aSingIn"><div class="login" >Log in</div></a>
                 </div>
             </nav>
            
@@ -187,9 +228,60 @@
         var max = document.getElementById('max').value;
         var prix = document.getElementsByName('prix');
         
+        if(authors=="" && min!="" && max!="" ){
+            //  alert("empty");
+            for( var i=0;i<auteur.length;i++){
+
+            if (parseInt(min) <=prix[i].innerHTML && parseInt( max)>=prix[i].innerHTML){
+            
+                    document.getElementsByClassName("gallery")[i].style="display:visible";
+                   
+                }
+                else{
+                    document.getElementsByClassName("gallery")[i].style="display:none";
+        
+                }
+            }
+        }
+
+
+        if(authors!="" && min=="" && max=="" ){
+            //  alert("empty");
+            for( var i=0;i<auteur.length;i++){
+
+                for( var j=0;j<auteur[i].length;j++){
+                    // console.log(auteur[i].options[j].value+" "+authors);
+
+                    if (authors==auteur[i].options[j].value){
+
+                        // alert('jjjjjjj');
+                        // console.log("sss");
+            
+                        document.getElementsByClassName("gallery")[i].style="display:visible";
+                        break;
+                    
+                    }
+                    else{
+
+                        document.getElementsByClassName("gallery")[i].style="display:none";
+
+                    }
+
+
+                }
+
+            
+            }
+        }
+    
+
+
+
+        if(authors!="" && min!="" && max!="" ){
          for( var i=0;i<auteur.length;i++){
+            
              
-        if (authors==auteur[i].innerHTML  || parseInt(min) <=prix[i].innerHTML && parseInt( max)>=prix[i].innerHTML){
+        if (authors==auteur[i].innerHTML  && parseInt(min) <=prix[i].innerHTML && parseInt( max)>=prix[i].innerHTML){
             
             document.getElementsByClassName("gallery")[i].style="display:visible";
            
@@ -198,7 +290,9 @@
             document.getElementsByClassName("gallery")[i].style="display:none";
 
         }
+        
     }
+        }
     }
 
 </script>
@@ -207,16 +301,11 @@
 <div class="info ">
     <label class="label1">Authors :</label>
     <select name="" class="authors" id="nom_auteur">
-        <option value="Bill">Bill</option>
-        <option value="Author 1">Author 1</option>
-        <option value="Author 2">Author 2</option>
-        <option value="Author 3">Author 3</option>
-        <option value="Author 4">Author 4</option>
-        <option value="Author 5">Author 5</option>
-        <option value="Author 6">Author 6</option>
-        <option value="Author 7">Author 7</option>
+    <option value="" disabled selected hidden>Authors</option>
 
-
+<?php while ($row2=$query2->fetch()){ ?>
+        <option value="<?= $row2["idA"] ?>"><?php echo $row2["Fname"]." ".$row2["Lname"] ?></option>
+<?php    }?>
     </select>
     </div>
 <div class="info">
@@ -229,63 +318,34 @@
 </div>
 
 <div class="our_book">
-<div class="gallery" >
-    <img src="images/book1.jpg" alt="book1" width="210px" height="280px">
-    <p class="book">The Body: A Guide for<br />
-        Occupants  Body<br />
-        <span class="font1" name="auteur">Bill</span><br />
-        <span class="prix_book" name="prix" >150</span></p>
-</div>
-<div class="gallery">
-    <img src="images/book2.jpg" alt="book2" width="210px" height="280px">
-    <p class="book">The Body: A Guide for<br />
-        Occupants  Body<br />
-        <span class="font1" name="auteur">Author 1</span><br />
-        <span class="prix_book" name="prix" >200</span></p>
-</div>
-<div class="gallery">
-    <img src="images/book3.jpg" alt="book3" width="210px" height="280px">
-    <p class="book">The Body: A Guide for<br />
-        Occupants  Body<br />
-        <span class="font1" name="auteur">Author 2</span><br />
-        <span class="prix_book" name="prix" >100</span></p>
-</div>
-<div class="gallery">
-    <img src="images/book4.jpg" alt="book4" width="210px" height="280px">
-    <p class="book">The Body: A Guide for<br />
-        Occupants  Body<br />
-        <span class="font1" name="auteur">Author 3</span><br />
-        <span class="prix_book" name="prix" >100</span></p>
-</div>
 
-<div class="gallery">
-    <img src="images/book5.jpg" alt="book5" width="210px" height="280px">
-    <p class="book">The Body: A Guide for<br />
-        Occupants  Body<br />
-        <span class="font1" name="auteur">Author 4</span><br />
-        <span class="prix_book" name="prix" >200</span></p>
-</div>
-<div class="gallery">
-    <img src="images/book6.jpg" alt="book6" width="210px" height="280px">
-    <p class="book">The Body: A Guide for<br />
-        Occupants  Body<br />
-        <span class="font1" name="auteur">Author 5</span><br />
-        <span class="prix_book" name="prix" >400</span></p>
-</div>
-<div class="gallery">
-    <img src="images/book7.jpg" alt="book7" width="210px" height="280px">
-    <p class="book">The Body: A Guide for<br />
-        Occupants  Body<br />
-        <span class="font1" name="auteur">Author 6</span><br />
-        <span class="prix_book" name="prix"  >300</span></p>
-</div>
-<div class="gallery">
-    <img src="images/book8.jpg" alt="book8" width="210px" height="280px">
-    <p class="book">The Body: A Guide for<br />
-        Occupants  Body<br />
-        <span class="font1" name="auteur">Author 7</span><br />
-        <span class="prix_book" name="prix" >400</span></p>
-</div>
+
+
+<?php  while ($row=$query1->fetch()){  ?>
+
+
+
+        <div class="gallery" >
+            <img src="images/<?php echo $row['image'] ?>" alt="book1" width="210px" height="280px">
+            <p class="book"><?php echo $row['Name'] ?><br />
+            
+                <span class="font1" >
+                <?php listauthor($row['idB']); ?>
+               
+                <select  name="auteur"> 
+						
+						<?php echo $option; ?>
+				</select>
+                
+                
+                
+                </span><br/>
+                <span class="prix_book" name="prix" ><?php echo $row['Price'] ?></span></p>
+        </div>
+
+ <?php   } ?>
+
+
 </div>
 
 

@@ -5,6 +5,16 @@ $color1:white;
 $color2:#93BDBD;
 $color3:#132225;
 
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-thumb{
+    background: #0F6C6E;
+}
+::-webkit-scrollbar-thumb:hover{
+    background: #007B7E;
+}
+
 
 *{
     margin: 0;

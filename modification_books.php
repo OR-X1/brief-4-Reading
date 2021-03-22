@@ -1,3 +1,47 @@
+<?php
+require_once('connect.php');
+
+$idB = $_GET['idB'];
+
+
+$sqlAfficher = "SELECT b.*, g.*, a.idA, a.Fname, a.Lname FROM gallery g, books b, authors a 
+WHERE g.idB = b.idB and g.idA = a.idA and b.idB = $idB";
+
+$queryAffiche = $pdo->query($sqlAfficher);
+
+$rowAffiche = $queryAffiche->fetch();
+
+
+
+// $req="SELECT g.idA  FROM gallery g
+// WHERE g.idB = $idB";
+
+// $result2=$pdo->query($req);
+
+
+$sth = $pdo->prepare("SELECT g.idA  FROM gallery g WHERE g.idB = $idB");
+$sth->execute();
+$result = $sth->fetchAll(\PDO::FETCH_ASSOC);
+// print_r($result);
+
+// $var;
+// 	 while($rw = $stmt->fetch()){
+// 	 $var = explode(",",$rw['idA']);	
+     
+// 	 }
+    //  foreach ($result as $x) {
+    //  print_r($x);	
+    // }
+
+
+
+
+$requet2="select * from authors";
+$query2=$pdo->query($requet2);
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,13 +55,13 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
       <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
 
-
     <script
   src="https://code.jquery.com/jquery-3.5.1.js"
   integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
   crossorigin="anonymous"></script>
 
   <style>
+
     @media only screen and (max-width: 820px) {
         
     
@@ -131,6 +175,58 @@
             } 
 
 </style>
+<style type="text/css">
+
+    ::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-thumb{
+    background: #0F6C6E;
+}
+::-webkit-scrollbar-thumb:hover{
+    background: #007B7E;
+}
+
+#checkboxes {
+  display: none;
+
+  padding-top:10px;
+  background: #132225;
+  height: 195px;
+  overflow-y: scroll;
+}
+
+#checkboxes label {
+  display: block;
+
+  padding-left: 20px;
+    padding-top: 10px;
+    color: aliceblue;
+    font-size: 13px;
+    border-bottom: 1px solid #0F6C6E;
+}
+.checkSelect{
+    margin-right:10px;
+}
+
+.selectBox {
+  position: relative;
+  
+}
+
+.selectBox select {
+  width: 200px;
+}
+
+.overSelect {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+</style>
+
 
 
 
@@ -138,19 +234,19 @@
 <body>
     <header>
         <div class="menu-toggle"></div>
-        <a href="index.html">
+        <a href="index.php">
             <div class="logo" >Reading.</div>
         </a>
         <nav class="navBar">
             
-            <a  href="index.html">Home</a>
-            <a href="our_books.html">Our Books</a>
-            <a href="add_authors.html">Add Authors</a>
-            <a href="add_books.html" >Add Books</a>
+            <a  href="index.php">Home</a>
+            <a href="our_books.php">Our Books</a>
+            <a href="add_authors.php">Add Authors</a>
+            <a href="add_books.php" >Add Books</a>
             
-            <div class="register" href="">
-                <a class="aSingIn"><div class="singin" >Sing in</div></a>
-                <a class="aSingIn"><div class="login" >Log in</div></a>
+            <div class="register">
+                <a href="login.php" class="aSingIn"><div class="singin" >Sing in</div></a>
+                <a href="login.php" class="aSingIn"><div class="login" >Log in</div></a>
             </div>
         </nav>
        
@@ -167,31 +263,118 @@
     </script>
 
     <p class="titre">Modification of Books</p>
-<div class="container">
+
+<form action="updateBook.php" class="container" method="post" enctype="multipart/form-data">
     <div class="DivFile">
         <p>&#10010; Add Image</p>
         <p class="editImg">&#9998; Edit Image</p>
-        <input class="ImgFile" type="file" accept=".png, .jpg, .jpeg" data-id='imgChange'>
+        <input name="image" class="ImgFile" type="file" accept=".png, .jpg, .jpeg" data-id='imgChange'>
         <div class="divImgChange">
-            <img id="imgChange" src="" alt="">
+            <img id="imgChange" src="images/<?php echo $rowAffiche['image'] ?>" alt="">
         </div>
     </div>
 
 
-   
     <div class="content">
-        <input type="text" placeholder="Name" class="input">
-        <input type="date" placeholder="Date" class="input">
-        <input type="number" placeholder="Price" class="input"><br />
-        <select name="authors" class="authors" >
-            <option value="" disabled selected hidden>Authors</option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-        </select><br />
-        <button class="ADD">Edit</button>
+    <input type="hidden" name="idB"  value="<?= $rowAffiche['idB'] ?>">
+        <input type="text" placeholder="Name" class="input" name="Name"  value="<?php echo $rowAffiche['Name'] ?>">
+        <input type="date" placeholder="Date" class="input" name="Date"  value="<?php echo $rowAffiche['dateB'] ?>">
+        <input type="number" placeholder="Price" class="input" name="Price"  value="<?php echo $rowAffiche['Price'] ?>"><br/>
+        <br/>
+
+
+        <div class="selectBox" class="authors" onclick="f()">
+      <select class="input">
+        <option>Select an option</option>
+      </select><br>
+      <div class="overSelect"></div>
     </div>
-</div>
+ 
+      <div id="checkboxes">
+
+      <?php while ($row2=$query2->fetch()){  ?>
+      
+        <?php    ?>
+
+            <label for="<?php echo $row2["idA"] ?>">
+            
+            <input class="checkSelect" type="checkbox" id="<?php echo $row2["idA"] ?>"
+             value="<?php echo $row2["idA"]; ?>" name="a[]"
+             <?php foreach ($result as $x) { if($x['idA']== $row2["idA"])  {
+            echo "checked";}}
+             ?> 
+            /><?php echo $row2["Fname"]." ".$row2["Lname"] ?></label>
+        <?php   } ?> 
+        
+    </div>
+    <button class="ADD">Edit</button>
+  </div>
+
+  <script type="text/javascript">
+    var expanded = false;
+
+    function f() {
+        // body...
+        var checkboxes = document.getElementById("checkboxes");
+         // document.getElementById('op1').style.height = '0px';
+  if (!expanded) {
+    checkboxes.style.display = "block";
+   
+    expanded = true;
+  } else {
+    checkboxes.style.display = "none";
+     // document.getElementById('op1').style.display = 'block';
+    expanded = false;
+  }
+    }
+</script>
+
+<!-- <script>
+function f2() {
+    var isChecked=[];
+    var elems= document.querySelectorAll('input[type="checkbox"]:checked');
+                for (var i=0;i<elems.length;i++)
+                {
+                     isChecked +=elems[i].value;
+              
+                    
+                }
+                // alert(isChecked[i]);
+                for (var i=0;i<isChecked.length;i++)
+                {
+                    alert(isChecked[i]);
+                }
+               
+}
+     
+
+</script> -->
+
+
+        
+        <!-- <button class="ADD">Edit</button> -->
+    </div>
+</form>
+
+
+<script type="text/javascript">
+    var expanded = false;
+    function f() {
+        // body...
+        var checkboxes = document.getElementById("checkboxes");
+         // document.getElementById('op1').style.height = '0px';
+  if (!expanded) {
+    checkboxes.style.display = "block";
+   
+    expanded = true;
+  } else {
+    checkboxes.style.display = "none";
+     // document.getElementById('op1').style.display = 'block';
+    expanded = false;
+  }
+    }
+</script>
+
 
 <script>
     function ImageSetter(input,target) {

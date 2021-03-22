@@ -1,3 +1,19 @@
+
+
+<?php
+require_once("connect.php");
+
+$requette="SELECT * FROM authors";
+
+$requette2="SELECT * FROM books";
+
+$query1=$pdo->query($requette2);
+$query=$pdo->query($requette);
+
+
+ ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,8 +32,13 @@
   integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
   crossorigin="anonymous"></script>
 
-  
   <style>
+      /* table{
+          width: 95%;
+      }
+      table th {
+  padding-left: 0px;
+} */
     @media only screen and (max-width: 820px) {
         
     
@@ -114,7 +135,7 @@
                     
                 }
                 .menu-toggle:before{
-                  
+                   
                     content: '\f0c9';
                     font-family: fontAwesome;
                     line-height: 40px;
@@ -128,7 +149,11 @@
                     transition: 0.5s;
                 }
     
-            } 
+            }
+
+            span{
+                color: red;
+            }
 
 </style>
 
@@ -137,19 +162,19 @@
 <body>
     <header>
         <div class="menu-toggle"></div>
-        <a href="index.html">
+        <a href="index.php">
             <div class="logo" >Reading.</div>
         </a>
         <nav class="navBar">
             
-            <a  href="index.html">Home</a>
-            <a href="our_books.html">Our Books</a>
-            <a href="add_authors.html">Add Authors</a>
-            <a href="add_books.html">Add Books</a>
+            <a  href="index.php">Home</a>
+            <a href="our_books.php">Our Books</a>
+            <a href="add_authors.php"  class="active">Add Authors</a>
+            <a href="add_books.php" >Add Books</a>
             
-            <div class="register" href="">
-                <a class="aSingIn"><div class="singin" >Sing in</div></a>
-                <a class="aSingIn"><div class="login" >Log in</div></a>
+            <div class="register">
+                <a href="login.php" class="aSingIn"><div class="singin" >Sing in</div></a>
+                <a href="login.php" class="aSingIn"><div class="login" >Log in</div></a>
             </div>
         </nav>
        
@@ -164,32 +189,100 @@
             })
         }); 
     </script>
+    <p class="titre">Add Authors</p>
 
-    <p class="titre">Modification of Authors</p>
-<div class="container">
+    <script>
+    function validation(){
+        
+        var Fname=document.getElementById("Fname");
+        var Lname=document.getElementById("Lname");
+        var date=document.getElementById("date");
+        if(Fname.value==""){
+            event.preventDefault();
+            document.getElementById("fname_error").innerHTML="*please enter your First name";
+        }
+        else{
+            document.getElementById("fname_error").innerHTML="";
+        }
+        if(Lname.value==""){
+            event.preventDefault();
+            document.getElementById("lname_error").innerHTML="*please enter Last name";
+        }
+        else{
+            document.getElementById("lname_error").innerHTML="";
+        }
+        if(date.value==""){
+            event.preventDefault();
+            document.getElementById("date_error").innerHTML="*please enter date ";
+        }
+        else{
+            document.getElementById("date_error").innerHTML="";
+        }
+      
+
+    }
+    </script>
+
+
+
+    <form action="addA.php"  class="container" method="post" enctype="multipart/form-data"  onsubmit="validation()">
     <div class="DivFile">
         <p>&#10010; Add Image</p>
 
         <p class="editImg">&#9998; Edit Image</p>
-        <input class="ImgFile" type="file" accept=".png, .jpg, .jpeg" data-id='imgChange'>
-        <img id="imgChange" src="" alt="">
+        <input class="ImgFile" name ="image" type="file" accept=".png, .jpg, .jpeg" data-id='imgChange'>
+        <img id="imgChange" src="" alt="" style="display: none;">
     </div>
 
 
    
     <div class="content">
-        <input type="text" placeholder="First Name" class="input">
-        <input type="text" placeholder="Last Name" class="input">
-        <input type="date" placeholder="Date of Birth" class="input"><br />
-        <select name="books" class="authors" >
-            <option value="" disabled selected hidden>Books</option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-        </select><br />
-        <button class="ADD">Edit</button>
+    <span id="fname_error"></span>
+        <input id="Fname" type="text" placeholder="First Name" name="Fname" class="input">
+
+        <span id="lname_error"></span>
+        <input id="Lname"
+ type="text" placeholder="Last Name" name="Lname" class="input">
+
+        <span id="date_error"></span>
+        <input id="date" type="date" placeholder="Date of Birth" name = "date" class="input"><br />
+        
+        <button class="ADD">Add</button>
     </div>
-</div>
+    </form>
+
+
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Image</th>
+        <th>First Name</th>
+        <th>First Name</th>
+        <th>Date of Birth</th>
+        <!-- <th>Books</th> -->
+        <th></th>
+    </tr>
+<?php  while ($table=$query->fetch())  {?>
+
+    <tr>
+        <td><?php echo $table["idA"] ?></td>
+        <td><img src="images/<?php echo $table["image"] ?>" class="img_book" alt="AA" width="85px" height="85px"></td>
+        <td><?php echo $table["Fname"] ?></td>
+        <td><?php echo $table["Lname"] ?></td>
+        <td><?php echo $table["dateN"] ?></td>
+       
+        <td>
+            <a href="modification_authors.php?idA=<?php echo $table['idA'] ?>"><img src="images/Icon feather-edit.png" class="img" alt=""></a>
+            <a href="deletAuthors.php?idA=<?php echo $table['idA'] ?>" onclick="return confirm('Are you sure about that !!')"><img src="images/Icon material-delete.png" alt=""></a>
+        </td>
+    </tr>
+
+<?php   }  ?>
+   
+   
+    
+</table>
+
 
 
 <script>
@@ -207,6 +300,8 @@
      var imgDiv=$(this).data('id');  
           imgDiv=$('#' + imgDiv);    
        ImageSetter(this,imgDiv);
+
+       $("#imgChange").css({"display": "block"});
    });
 </script>
 

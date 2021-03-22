@@ -5,6 +5,16 @@ $color1:white;
 $color2:#93BDBD;
 
 
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-thumb{
+    background: #0F6C6E;
+}
+::-webkit-scrollbar-thumb:hover{
+    background: #007B7E;
+}
+
 *{
     margin: 0;
     padding: 0;
@@ -263,6 +273,8 @@ header{
             font-size: 18px;
             font-weight: 270;
             color: #1F1F1F;
+
+            width: 210px;
             @media (max-width:500px){
                 font-size:13px;
             }

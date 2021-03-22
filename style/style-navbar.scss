@@ -2,6 +2,18 @@ $size11: 11px;
 $size17: 17px;
 $size28: 28px;
 
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-thumb{
+    background: #0F6C6E;
+}
+::-webkit-scrollbar-thumb:hover{
+    background: #007B7E;
+}
+
+
 body{
     margin: 0;
     padding: 0;

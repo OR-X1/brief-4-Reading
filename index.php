@@ -1,3 +1,8 @@
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -165,19 +170,19 @@
 
     <header>
         <div class="menu-toggle"></div>
-        <a href="index.html">
+        <a href="index.php">
             <div class="logo" >Reading.</div>
         </a>
         <nav class="navBar">
             
-            <a  href="index.html" class="active">Home</a>
-            <a href="our_books.html"  >Our Books</a>
-            <a href="add_authors.html">Add Authors</a>
-            <a href="add_books.html">Add Books</a>
+            <a  href="index.php" class="active">Home</a>
+            <a href="our_books.php"  >Our Books</a>
+            <a href="add_authors.php">Add Authors</a>
+            <a href="add_books.php">Add Books</a>
             
-            <div class="register" href="">
-                <a class="aSingIn"><div class="singin" >Sing in</div></a>
-                <a class="aSingIn"><div class="login" >Log in</div></a>
+            <div class="register" >
+                <a href="login.php" class="aSingIn"><div class="singin" >Sing in</div></a>
+                <a href="login.php" class="aSingIn"><div class="login" >Log in</div></a>
             </div>
         </nav>
        
@@ -200,8 +205,8 @@
             and it'll give you everything.</p>
 
             <div class="registerIntro" href="">
-                <a href=""><div class="login" >Join us</div>
-                <a href=""><div class="login" >Let'S Read</div></a>
+                <a href="login.php"><div class="login" >Join us</div>
+                <a href="our_books.php"><div class="login" >Let'S Read</div></a>
             </div>
     </div>
 <div class="bigOntro">
@@ -314,7 +319,7 @@
 
 
 
-<footer class="footer">
+<!-- <footer class="footer">
     <div class="t-list">
     <div class="list">
         <ul>
@@ -374,11 +379,11 @@
    
 </div>  
     </footer>
-    <div class="copyright">© Copyright 2021 Reading.  by AG developer</div>
+    <div class="copyright">© Copyright 2021 Reading.  by AG developer</div> -->
 
 
 
-
+    <?php include("footer.php"); ?>
 
 </body>
 </html>
